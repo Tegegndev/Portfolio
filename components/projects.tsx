@@ -5,7 +5,7 @@ import { useRef } from "react"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent, CardFooter } from "@/components/ui/card"
-import { ExternalLink, Github, Code } from "lucide-react"
+import { ExternalLink, Github, Code, Clock } from "lucide-react"
 import Image from "next/image"
 import Link from "next/link"
 
@@ -35,36 +35,71 @@ export default function Projects() {
   const projects = [
     {
       id: 1,
-      title: "University Student Portal",
+      title: "Amharic Text-to-Speech Bot",
       description:
-        "A comprehensive platform for university students to access course materials, submit assignments, and track their academic progress.",
-      image: "/placeholder.svg?height=400&width=600",
-      tags: ["Python", "PostgreSQL", "React", "API"],
+        "A Telegram bot that converts Amharic text to natural-sounding speech, making content more accessible to those with visual impairments or reading difficulties.",
+      image: "/placeholder.svg?height=400&width=600", // Replace with FreePik image
+      tags: ["Python", "Telegram API", "Speech Synthesis", "NLP"],
       github: "#",
-      demo: "#",
+      demo: "https://t.me/amharic_tts_bot",
       featured: true,
     },
     {
       id: 2,
-      title: "Telegram Bot Framework",
+      title: "Pinterest Image Downloader",
       description:
-        "A modular framework for building Telegram bots with advanced features like conversation handling and inline queries.",
-      image: "/placeholder.svg?height=400&width=600",
-      tags: ["Python", "Telegram API", "MongoDB"],
+        "A Telegram bot that allows users to download high-quality images from Pinterest by simply sharing a link. Supports batch downloading and various image formats.",
+      image: "/placeholder.svg?height=400&width=600", // Replace with FreePik image
+      tags: ["Python", "Telegram API", "Web Scraping", "Pinterest API"],
+      github: "#",
+      demo: "https://t.me/pinterest_dl_bot",
+      featured: false,
+    },
+    {
+      id: 3,
+      title: "Grade 12 Exam Results Bot",
+      description:
+        "A Telegram bot that provides instant access to Grade 12 national exam results. Students can query their results by ID number, eliminating the need to navigate complex websites.",
+      image: "/placeholder.svg?height=400&width=600", // Replace with FreePik image
+      tags: ["Python", "Telegram API", "Web Scraping", "Database"],
+      github: "#",
+      demo: "https://t.me/grade12_results_bot",
+      featured: false,
+    },
+    {
+      id: 4,
+      title: "Afan Oromo Chatbot",
+      description:
+        "An intelligent chatbot that communicates in Afan Oromo, providing information, answering questions, and helping users in their native language.",
+      image: "/placeholder.svg?height=400&width=600", // Replace with FreePik image
+      tags: ["Python", "NLP", "Machine Learning", "Telegram API"],
       github: "#",
       demo: "#",
       featured: false,
     },
     {
-      id: 3,
-      title: "API Gateway Service",
+      id: 5,
+      title: "Vision Assistant for the Blind",
       description:
-        "A scalable API gateway that handles authentication, rate limiting, and request routing for microservices.",
-      image: "/placeholder.svg?height=400&width=600",
-      tags: ["Node.js", "Express", "Redis", "Docker"],
+        "An Android application that helps visually impaired individuals interact with their environment through advanced image recognition, text reading, and voice guidance.",
+      image: "/placeholder.svg?height=400&width=600", // Replace with FreePik image
+      tags: ["Android", "Java", "Computer Vision", "TensorFlow"],
+      github: "#",
+      demo: "#",
+      featured: true,
+      ongoing: true,
+    },
+    {
+      id: 6,
+      title: "Multilingual Voice Assistant",
+      description:
+        "A voice-controlled assistant supporting multiple Ethiopian languages, designed to bridge the digital divide for non-English speakers through natural language processing.",
+      image: "/placeholder.svg?height=400&width=600", // Replace with FreePik image
+      tags: ["Python", "NLP", "Speech Recognition", "AI"],
       github: "#",
       demo: "#",
       featured: false,
+      ongoing: true,
     },
   ]
 
@@ -98,11 +133,19 @@ export default function Projects() {
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  {project.featured && (
-                    <div className="absolute top-2 right-2 bg-primary text-primary-foreground text-xs py-1 px-3 rounded-full font-medium">
-                      Featured
-                    </div>
-                  )}
+                  <div className="absolute top-2 right-2 flex gap-2">
+                    {project.featured && (
+                      <div className="bg-primary text-primary-foreground text-xs py-1 px-3 rounded-full font-medium">
+                        Featured
+                      </div>
+                    )}
+                    {project.ongoing && (
+                      <div className="bg-amber-500 text-white text-xs py-1 px-3 rounded-full font-medium flex items-center">
+                        <Clock className="h-3 w-3 mr-1" />
+                        Ongoing
+                      </div>
+                    )}
+                  </div>
                 </div>
                 <CardContent className="p-6 relative z-10">
                   <h3 className="text-xl font-semibold mb-2 flex items-center group-hover:text-primary transition-colors">
@@ -128,7 +171,7 @@ export default function Projects() {
                   <Button size="sm" asChild className="premium-button">
                     <Link href={project.demo}>
                       <ExternalLink className="h-4 w-4 mr-2" />
-                      Live Demo
+                      {project.ongoing ? "Progress" : "Live Demo"}
                     </Link>
                   </Button>
                 </CardFooter>
